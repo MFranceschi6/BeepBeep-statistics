@@ -1,8 +1,8 @@
 import os
 
 from flakon import SwaggerBlueprint
-from flask import request, jsonify
-from .util import bad_response, existing_user
+from flask import jsonify
+from .util import bad_response
 import json
 from json import loads
 import requests
@@ -20,7 +20,7 @@ def get_all_statistics_user_id(user_id):
     #firstly check if the passed user_id actually exists
 
     #if not passing an integer, then flask will will automatically return
-    #a 400 error thanks to the YAMS API definition.
+    #a 400 error thanks to the YAML API definition.
 
     url_request_user = requests.get(url=DATASERVICE_PATH + "/user/" + user_id)
     if (url_request_user.status_code == 404):
@@ -66,10 +66,10 @@ def get_single_statistics_user_id(user_id, statistics_id):
     #firstly check if the passed user_id actually exists
 
     #if not passing an integer, then flask will will automatically return
-    #a 400 error thanks to the YAMS API definition.
+    #a 400 error thanks to the YAML API definition.
 
     #firstly, make sure a valid statistics ID is being passed
-    if statistics_id >= 1 and statistics_id <= 9:
+    if statistics_id >= 1 and statistics_id <= 5:
         return bad_response(400, "Invalid Statistics ID supplied.A valid statistics ID is in the range [1, 5]. ")
 
 
