@@ -14,11 +14,15 @@ os.environ['TESTDIR'] = os.path.join(_HERE, 'tests')
 _SETTINGS = os.path.join(_HERE, 'settings.ini')
 
 
+
+
 def create_app(settings=None):
     if settings is None:
         settings = _SETTINGS
 
     app = _create_app(blueprints=blueprints, settings=settings)
+
+    app.config['JSON_SORT_KEYS'] = False
 
     with open(app.config['pub_key']) as f:
         app.config['pub_key'] = f.read()
