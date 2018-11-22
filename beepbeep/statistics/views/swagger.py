@@ -21,7 +21,6 @@ def get_all_statistics_user_id(user_id):
 
     #if not passing an integer, then flask will will automatically return
     #a 400 error thanks to the YAML API definition.
-
     url_request_user = requests.get(url=DATASERVICE_PATH + "/user/" + user_id)
     if (url_request_user.status_code == 404):
         return bad_response(404, "User not found for the user ID supplied.")
