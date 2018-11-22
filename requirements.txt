@@ -1,0 +1,6 @@
+pyjwt
+-e git+https://github.com/MFranceschi6/flakon.git#egg=flakon
+flask_webtest
+cryptography
+chaussette
+flask_cors

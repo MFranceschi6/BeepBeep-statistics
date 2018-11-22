@@ -1,0 +1,4 @@
+
+      [console_scripts]
+      beepbeep-statistics = statistics.run:main
+      

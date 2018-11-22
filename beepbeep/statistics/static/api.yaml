@@ -138,5 +138,3 @@ paths:
           description: "User not found for the user ID supplied."
       security:
       - api_key: []
-      
-      

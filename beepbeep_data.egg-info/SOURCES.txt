@@ -1,0 +1,17 @@
+README.md
+setup.py
+beepbeep_data.egg-info/PKG-INFO
+beepbeep_data.egg-info/SOURCES.txt
+beepbeep_data.egg-info/dependency_links.txt
+beepbeep_data.egg-info/entry_points.txt
+beepbeep_data.egg-info/not-zip-safe
+beepbeep_data.egg-info/top_level.txt
+statistics/__init__.py
+statistics/app.py
+statistics/run.py
+statistics/tests/__init__.py
+statistics/tests/test_views.py
+statistics/views/__init__.py
+statistics/views/home.py
+statistics/views/swagger.py
+statistics/views/util.py
