@@ -7,6 +7,8 @@ from json import loads
 import requests
 from .util import *
 
+requests.adapters.DEFAULT_RETRIES = 7
+
 
 
 HERE = os.path.dirname(__file__)
@@ -15,8 +17,6 @@ api = SwaggerBlueprint('API', __name__, swagger_spec=YML)
 
 
 DATASERVICE_PATH="http://127.0.0.1:5002"
-
-requests.adapters.DEFAULT_RETRIES = 5
 
 
 @api.operation('getAllStatisticsbyUserID')
