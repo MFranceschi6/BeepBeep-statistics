@@ -8,4 +8,4 @@ home = Blueprint('home', __name__)
 
 @home.route('/')
 def render_static():
-    return "Statistics Home. "
+    return "Statistics Home."

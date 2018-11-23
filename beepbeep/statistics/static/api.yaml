@@ -105,6 +105,8 @@ paths:
           description: "Invalid user ID supplied"
         '404':
           description: "User not found for the user ID supplied. "
+        '503':
+          description: "The 'dataservice' microservice on which this application depends on is not available. Please, try again later"
       security:
       - api_key: []
       

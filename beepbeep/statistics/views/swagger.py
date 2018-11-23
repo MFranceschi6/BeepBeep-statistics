@@ -2,10 +2,12 @@ import os
 
 from flakon import SwaggerBlueprint
 from flask import jsonify
-from .util import bad_response
 import json
 from json import loads
 import requests
+from .util import *
+
+
 
 HERE = os.path.dirname(__file__)
 YML = os.path.join(HERE, '..', 'static', 'api.yaml')
@@ -14,16 +16,21 @@ api = SwaggerBlueprint('API', __name__, swagger_spec=YML)
 
 DATASERVICE_PATH="http://127.0.0.1:5002"
 
+requests.adapters.DEFAULT_RETRIES = 5
+
 
 @api.operation('getAllStatisticsbyUserID')
 def get_all_statistics_user_id(user_id):
     #firstly check if the passed user_id actually exists
 
-    #if not passing an integer, then flask will will automatically return
-    #a 400 error thanks to the YAML API definition.
-    url_request_user = requests.get(url=DATASERVICE_PATH + "/users/" + user_id)
-    if (url_request_user.status_code == 404):
-        return bad_response(404, "User not found for the user ID supplied.")
+    try:
+        url_request_user = requests.get(url=DATASERVICE_PATH + "/users/" + user_id)
+
+        if (url_request_user.status_code == 404):
+            return bad_response(404, "User not found for the user ID supplied.")
+
+    except requests.exceptions.RequestException:
+        return bad_response(503, "The 'dataservice' microservice on which this application depends on is not available. Please, try again later.")
 
 
     #fine, we now have valid user ID.
@@ -73,9 +80,15 @@ def get_single_statistics_user_id(user_id, statistics_id):
         return bad_response(400, "Invalid Statistics ID supplied " + str(statistics_id) + ".A valid statistics ID is in the range [1, 5]. ")
 
     #firstly check if the passed user_id actually exists
-    url_request_user = requests.get(url=DATASERVICE_PATH + "/users/" + user_id)
-    if (url_request_user.status_code == 404):
-        return bad_response(404, "User not found for the user ID supplied.")
+    try:
+        url_request_user = requests.get(url=DATASERVICE_PATH + "/users/" + user_id)
+
+        if (url_request_user.status_code == 404):
+            return bad_response(404, "User not found for the user ID supplied.")
+
+    except requests.exceptions.RequestException:
+        return bad_response(503,
+                            "The 'dataservice' microservice on which this application depends on is not available. Please, try again later.")
 
 
     #fine, we now have a valid user ID and a valid statistics ID
