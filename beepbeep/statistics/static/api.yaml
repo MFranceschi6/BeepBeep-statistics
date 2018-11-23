@@ -108,7 +108,7 @@ paths:
       security:
       - api_key: []
       
-  /statistics/{user_id}/{statistics_id}:
+  /statistics/{user_id}/{statistics_id}/:
     parameters:
       - in: path
         name: user_id

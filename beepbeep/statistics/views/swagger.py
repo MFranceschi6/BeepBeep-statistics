@@ -21,14 +21,14 @@ def get_all_statistics_user_id(user_id):
 
     #if not passing an integer, then flask will will automatically return
     #a 400 error thanks to the YAML API definition.
-    url_request_user = requests.get(url=DATASERVICE_PATH + "/user/" + user_id)
+    url_request_user = requests.get(url=DATASERVICE_PATH + "/users/" + user_id)
     if (url_request_user.status_code == 404):
         return bad_response(404, "User not found for the user ID supplied.")
 
 
     #fine, we now have valid user ID.
     #we need to get the runs of the user
-    url_request_runs = requests.get(url=DATASERVICE_PATH + "/user/" + user_id + "/runs")
+    url_request_runs = requests.get(url=DATASERVICE_PATH + "/users/" + user_id + "/runs")
 
     #process every single run for a user
     runs_response = url_request_runs.json()
@@ -62,24 +62,25 @@ def get_all_statistics_user_id(user_id):
 
 @api.operation('getSingleStatisticsbyUserID')
 def get_single_statistics_user_id(user_id, statistics_id):
-    #firstly check if the passed user_id actually exists
 
-    #if not passing an integer, then flask will will automatically return
-    #a 400 error thanks to the YAML API definition.
+    try:
+        statistics_id = int(statistics_id)
+    except:
+        return bad_response(400, "Invalid Statistics ID type provided " + str(type(statistics_id)) + ". An integer must be provided. ")
 
     #firstly, make sure a valid statistics ID is being passed
-    if statistics_id >= 1 and statistics_id <= 5:
-        return bad_response(400, "Invalid Statistics ID supplied.A valid statistics ID is in the range [1, 5]. ")
+    if not 1 <= statistics_id <= 5:
+        return bad_response(400, "Invalid Statistics ID supplied " + str(statistics_id) + ".A valid statistics ID is in the range [1, 5]. ")
 
-
-    url_request_user = requests.get(url=DATASERVICE_PATH + "/user/" + user_id)
+    #firstly check if the passed user_id actually exists
+    url_request_user = requests.get(url=DATASERVICE_PATH + "/users/" + user_id)
     if (url_request_user.status_code == 404):
         return bad_response(404, "User not found for the user ID supplied.")
 
 
     #fine, we now have a valid user ID and a valid statistics ID
     #we need to get the runs of the user
-    url_request_runs = requests.get(url=DATASERVICE_PATH + "/user/" + user_id + "/runs")
+    url_request_runs = requests.get(url=DATASERVICE_PATH + "/users/" + user_id + "/runs")
 
     #process every single run for a user
     runs_response = url_request_runs.json()
