@@ -16,10 +16,21 @@ components:
     NumericalArray:
       type: array
       items:
-        type: integer
+        type: number
       minItems: 0
-      
-      
+
+    StringsArray:
+      type: array
+      items:
+        type: string
+      minItems: 0
+
+
+
+    RunNamesArray:
+      type: array
+      $ref: '#/components/schemas/StringsArray'
+
     DistanceArray:
       type: array
       $ref: '#/components/schemas/NumericalArray'
@@ -59,6 +70,10 @@ components:
           elapsed_time_array:
             type: object
             $ref: '#/components/schemas/ElapsedTimeArray'
+          run_names_array:
+            type: object
+            $ref: '#/components/schemas/RunNamesArray'
+
             
       
     OneNumericalArray:
@@ -80,7 +95,12 @@ components:
           elapsed_time_array:
             type: object
             $ref: '#/components/schemas/ElapsedTimeArray'
-    
+      allOf:
+      - type: object
+      properties:
+           run_names_array:
+            type: object
+            $ref: '#/components/schemas/RunNamesArray'
       
 paths:
   /users/{user_id}/statistics/:
@@ -93,7 +113,7 @@ paths:
           type: integer
     get:
       operationId: "getAllStatisticsbyUserID"
-      description: "By accessing this page and providing an existing user ID, you retrieve a set of 5 arrays about the temporal statistics of your runs for the following attributes, respectively: 'distance', 'average speed', 'average heartrate'. 'total elevation gain', 'elapsed time'."
+      description: "By accessing this page and providing an existing user ID, you retrieve a set of 6 arrays about the temporal statistics of your runs for the following attributes, respectively: 'distance', 'average speed', 'average heartrate'. 'total elevation gain', 'elapsed time' and 'run names'"
       responses:
         '200':
           description: "All runs' statistics for the user whose ID was provided"
@@ -120,7 +140,7 @@ paths:
           type: integer
       - in: path
         name: statistics_id
-        description: "Based on the statistics ID passed, one of the following arrays is returned: 1 = distance array; 2 = average speed array; 3 = average heartrate array ; 4 = total elevation gain array; 5 = elapsed time array."
+        description: "Based on the statistics ID passed, an array containing the run names, as well as the array corresponding to the index supplied is returned: 1 = distance array; 2 = average speed array; 3 = average heartrate array ; 4 = total elevation gain array; 5 = elapsed time array."
         required: true
         schema:
           type: integer
