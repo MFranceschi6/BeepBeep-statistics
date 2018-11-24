@@ -1,5 +1,15 @@
 README.md
 setup.py
+beepbeep/__init__.py
+beepbeep/statistics/__init__.py
+beepbeep/statistics/app.py
+beepbeep/statistics/run.py
+beepbeep/statistics/tests/__init__.py
+beepbeep/statistics/tests/test_views.py
+beepbeep/statistics/views/__init__.py
+beepbeep/statistics/views/home.py
+beepbeep/statistics/views/swagger.py
+beepbeep/statistics/views/util.py
 beepbeep_statistics.egg-info/PKG-INFO
 beepbeep_statistics.egg-info/SOURCES.txt
 beepbeep_statistics.egg-info/dependency_links.txt

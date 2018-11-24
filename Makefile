@@ -4,6 +4,7 @@ VIRTUALENV = virtualenv
 BIN = $(VENV)/bin
 PYTHON = $(BIN)/python
 API=api.yaml
+PKG=beepbeep
 SERVICE=statistics
 
 INSTALL = $(BIN)/pip install --no-deps
