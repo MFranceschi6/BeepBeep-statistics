@@ -83,7 +83,7 @@ components:
     
       
 paths:
-  /statistics/{user_id}/:
+  /users/{user_id}/statistics/:
     parameters:
       - in: path
         name: user_id
@@ -110,7 +110,7 @@ paths:
       security:
       - api_key: []
       
-  /statistics/{user_id}/{statistics_id}/:
+  /users/{user_id}/statistics/{statistics_id}/:
     parameters:
       - in: path
         name: user_id
@@ -138,5 +138,7 @@ paths:
           description: "Invalid user ID supplied or invalid statistics ID supplied."
         '404':
           description: "User not found for the user ID supplied."
+        '503':
+          description: "The 'dataservice' microservice on which this application depends on is not available. Please, try again later"
       security:
       - api_key: []
