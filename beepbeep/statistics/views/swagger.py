@@ -41,6 +41,7 @@ def get_all_statistics_user_id(user_id):
     runs_response = url_request_runs.json()
 
     run_names_array = []
+    run_ids_array = []
     distance_array = []
     average_speed_array = []
     average_heart_rate_array = []
@@ -49,22 +50,28 @@ def get_all_statistics_user_id(user_id):
 
     for run_response in runs_response:
         for attr in run_response:
+            attr_value = run_response[attr]
+
             if(attr == "distance"):
-                distance_array.append(run_response[attr])
+                distance_array.append(attr_value)
             elif(attr == "average_speed"):
-                average_speed_array.append(run_response[attr])
+                average_speed_array.append(attr_value)
             elif(attr == "average_heartrate"):
-                average_heart_rate_array.append(run_response[attr])
+                average_heart_rate_array.append(attr_value)
             elif(attr == "total_elevation_gain"):
-                elevation_gain_array.append(run_response[attr])
+                elevation_gain_array.append(attr_value)
             elif(attr == "elapsed_time"):
-                elapsed_time_array.append(run_response[attr])
+                elapsed_time_array.append(attr_value)
             elif(attr == "title"):
-                run_names_array.append(run_response[attr])
+                run_names_array.append(attr_value)
+            elif(attr == "id"):
+                run_ids_array.append(attr_value)
+
 
     dictionary_output_response = {"distance_array" : distance_array, "average_speed_array" : average_speed_array,
                                 "average_heart_rate_array": average_heart_rate_array, "elevation_gain_array": elevation_gain_array,
-                                  "elapsed_time_array": elapsed_time_array, "run_names_array": run_names_array}
+                                  "elapsed_time_array": elapsed_time_array, "run_names_array": run_names_array,
+                                  "run_ids_array" : run_ids_array }
 
     return jsonify(dictionary_output_response)
 
@@ -101,28 +108,33 @@ def get_single_statistics_user_id(user_id, statistics_id):
     #process every single run for a user
     runs_response = url_request_runs.json()
 
+
+    run_names_array = []
+    run_ids_array = []
     distance_array = []
     average_speed_array = []
     average_heart_rate_array = []
     elevation_gain_array = []
     elapsed_time_array = []
-    run_names_array = []
 
     #add the corresponding runs' statistics seeked to a dictionary
     for run_response in runs_response:
         for attr in run_response:
+            attr_value = run_response[attr]
             if(attr == "distance" and statistics_id == 1):
-                distance_array.append(run_response[attr])
+                distance_array.append(attr_value)
             elif(attr == "average_speed" and statistics_id == 2):
-                average_speed_array.append(run_response[attr])
+                average_speed_array.append(attr_value)
             elif(attr == "average_heartrate" and statistics_id == 3):
-                average_heart_rate_array.append(run_response[attr])
+                average_heart_rate_array.append(attr_value)
             elif(attr == "total_elevation_gain" and statistics_id == 4):
-                elevation_gain_array.append(run_response[attr])
+                elevation_gain_array.append(attr_value)
             elif(attr == "elapsed_time" and statistics_id == 5):
-                elapsed_time_array.append(run_response[attr])
+                elapsed_time_array.append(attr_value)
             elif (attr == "title"):
-                run_names_array.append(run_response[attr])
+                run_names_array.append(attr_value)
+            elif (attr == "id"):
+                run_ids_array.append(attr_value)
 
     output_dictionary = {}
 
@@ -140,6 +152,6 @@ def get_single_statistics_user_id(user_id, statistics_id):
 
     output_dictionary.update({"run_names_array" : run_names_array})
 
-
+    output_dictionary.update({"run_ids_array" : run_ids_array})
 
     return jsonify(output_dictionary)

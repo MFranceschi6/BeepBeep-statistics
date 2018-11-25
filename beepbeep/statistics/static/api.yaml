@@ -27,9 +27,14 @@ components:
 
 
 
+
     RunNamesArray:
       type: array
       $ref: '#/components/schemas/StringsArray'
+
+    RunIDsArray:
+      type: array
+      $ref: '#/components/schemas/NumericalArray'
 
     DistanceArray:
       type: array
@@ -73,6 +78,10 @@ components:
           run_names_array:
             type: object
             $ref: '#/components/schemas/RunNamesArray'
+          run_ids_array:
+            type: object
+            $ref: '#/components/schemas/RunIDsArray'
+
 
             
       
@@ -101,6 +110,9 @@ components:
            run_names_array:
             type: object
             $ref: '#/components/schemas/RunNamesArray'
+           run_ids_array:
+            type: object
+            $ref: '#/components/schemas/RunIDsArray'
       
 paths:
   /users/{user_id}/statistics/:
