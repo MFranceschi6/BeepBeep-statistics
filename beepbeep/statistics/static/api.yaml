@@ -16,10 +16,26 @@ components:
     NumericalArray:
       type: array
       items:
-        type: integer
+        type: number
       minItems: 0
-      
-      
+
+    StringsArray:
+      type: array
+      items:
+        type: string
+      minItems: 0
+
+
+
+
+    RunNamesArray:
+      type: array
+      $ref: '#/components/schemas/StringsArray'
+
+    RunIDsArray:
+      type: array
+      $ref: '#/components/schemas/NumericalArray'
+
     DistanceArray:
       type: array
       $ref: '#/components/schemas/NumericalArray'
@@ -59,6 +75,14 @@ components:
           elapsed_time_array:
             type: object
             $ref: '#/components/schemas/ElapsedTimeArray'
+          run_names_array:
+            type: object
+            $ref: '#/components/schemas/RunNamesArray'
+          run_ids_array:
+            type: object
+            $ref: '#/components/schemas/RunIDsArray'
+
+
             
       
     OneNumericalArray:
@@ -80,10 +104,18 @@ components:
           elapsed_time_array:
             type: object
             $ref: '#/components/schemas/ElapsedTimeArray'
-    
+      allOf:
+      - type: object
+      properties:
+           run_names_array:
+            type: object
+            $ref: '#/components/schemas/RunNamesArray'
+           run_ids_array:
+            type: object
+            $ref: '#/components/schemas/RunIDsArray'
       
 paths:
-  /statistics/{user_id}/:
+  /users/{user_id}/statistics/:
     parameters:
       - in: path
         name: user_id
@@ -93,7 +125,7 @@ paths:
           type: integer
     get:
       operationId: "getAllStatisticsbyUserID"
-      description: "By accessing this page and providing an existing user ID, you retrieve a set of 5 arrays about the temporal statistics of your runs for the following attributes, respectively: 'distance', 'average speed', 'average heartrate'. 'total elevation gain', 'elapsed time'."
+      description: "By accessing this page and providing an existing user ID, you retrieve a set of 6 arrays about the temporal statistics of your runs for the following attributes, respectively: 'distance', 'average speed', 'average heartrate'. 'total elevation gain', 'elapsed time' and 'run names'"
       responses:
         '200':
           description: "All runs' statistics for the user whose ID was provided"
@@ -110,7 +142,7 @@ paths:
       security:
       - api_key: []
       
-  /statistics/{user_id}/{statistics_id}/:
+  /users/{user_id}/statistics/{statistics_name}/:
     parameters:
       - in: path
         name: user_id
@@ -119,14 +151,14 @@ paths:
         schema:
           type: integer
       - in: path
-        name: statistics_id
-        description: "Based on the statistics ID passed, one of the following arrays is returned: 1 = distance array; 2 = average speed array; 3 = average heartrate array ; 4 = total elevation gain array; 5 = elapsed time array."
+        name: statistics_name
+        description: "Based on the statistics name passed, an array containing the run names corresponding to the statistics name supplied is returned. 'distances' = distance array; 'average_speeds' = average speed array; 'average_heart_rates' = average heartrate array ; 'elevation_gains' = total elevation gain array; 'elapsed_times' = elapsed time array."
         required: true
         schema:
-          type: integer
+          type: string
     get:
       operationId: "getSingleStatisticsbyUserID"
-      description: "By accessing this page and providing an existing user ID, you retrieve a set of 5 arrays about the temporal statistics of your runs for the following attributes, respectively: 'distance', 'average speed', 'average heartrate'. 'total elevation gain', 'elapsed time'."
+      description: "By accessing this page and providing an existing user ID, you retrieve a set of 7 arrays about the temporal statistics of your runs for the following attributes, respectively: 'distance', 'average speed', 'average heartrate'. 'total elevation gain', 'elapsed time', as well as the run names and the run ids. "
       responses:
         '200':
           description: "Runs' statistics of one single statistics type for the user whose ID was provided"
@@ -138,5 +170,7 @@ paths:
           description: "Invalid user ID supplied or invalid statistics ID supplied."
         '404':
           description: "User not found for the user ID supplied."
+        '503':
+          description: "The 'dataservice' microservice on which this application depends on is not available. Please, try again later"
       security:
       - api_key: []

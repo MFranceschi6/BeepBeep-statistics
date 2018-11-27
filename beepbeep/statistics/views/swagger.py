@@ -1,11 +1,7 @@
-import os
-
 from flakon import SwaggerBlueprint
-from flask import jsonify
-import json
-from json import loads
-import requests
 from .util import *
+
+
 
 requests.adapters.DEFAULT_RETRIES = 7
 
@@ -30,7 +26,8 @@ def get_all_statistics_user_id(user_id):
             return bad_response(404, "User not found for the user ID supplied.")
 
     except requests.exceptions.RequestException:
-        return bad_response(503, "The 'dataservice' microservice on which this application depends on is not available. Please, try again later.")
+        return bad_response(503, "The 'dataservice' microservice on which this application depends on is not available."\
+                                "Please, try again later.")
 
 
     #fine, we now have valid user ID.
@@ -40,6 +37,8 @@ def get_all_statistics_user_id(user_id):
     #process every single run for a user
     runs_response = url_request_runs.json()
 
+    run_names_array = []
+    run_ids_array = []
     distance_array = []
     average_speed_array = []
     average_heart_rate_array = []
@@ -48,36 +47,47 @@ def get_all_statistics_user_id(user_id):
 
     for run_response in runs_response:
         for attr in run_response:
-            if(attr == "distance"):
-                distance_array.append(run_response[attr])
-            elif(attr == "average_speed"):
-                average_speed_array.append(run_response[attr])
-            elif(attr == "average_heartrate"):
-                average_heart_rate_array.append(run_response[attr])
-            elif(attr == "total_elevation_gain"):
-                elevation_gain_array.append(run_response[attr])
-            elif(attr == "elapsed_time"):
-                elapsed_time_array.append(run_response[attr])
+            attr_value = run_response[attr]
 
-    dictionary_output_response = {"distance_array" : distance_array, "average_speed_array" : average_speed_array,
-                                "average_heart_rate_array": average_heart_rate_array, "elevation_gain_array": elevation_gain_array,
-                                  "elapsed_time_array": elapsed_time_array}
+            if(attr == "distance"):
+                distance_array.append(attr_value)
+            elif(attr == "average_speed"):
+                average_speed_array.append(attr_value)
+            elif(attr == "average_heartrate"):
+                average_heart_rate_array.append(attr_value)
+            elif(attr == "total_elevation_gain"):
+                elevation_gain_array.append(attr_value)
+            elif(attr == "elapsed_time"):
+                elapsed_time_array.append(attr_value)
+            elif(attr == "title"):
+                run_names_array.append(attr_value)
+            elif(attr == "id"):
+                run_ids_array.append(attr_value)
+
+
+    dictionary_output_response = {"distances" : distance_array, "average_speeds" : average_speed_array,
+                                "average_heart_rates": average_heart_rate_array, "elevation_gains": elevation_gain_array,
+                                  "elapsed_times": elapsed_time_array, "run_names": run_names_array,
+                                  "run_ids" : run_ids_array }
 
     return jsonify(dictionary_output_response)
 
 
 
 @api.operation('getSingleStatisticsbyUserID')
-def get_single_statistics_user_id(user_id, statistics_id):
+def get_single_statistics_user_id(user_id, statistics_name):
 
     try:
-        statistics_id = int(statistics_id)
+        statistics_name = str(statistics_name)
     except:
-        return bad_response(400, "Invalid Statistics ID type provided " + str(type(statistics_id)) + ". An integer must be provided. ")
+        return bad_response(400, "Invalid Statistics name type provided " + str(type(statistics_name)) + \
+                                ". A valid string must be provided. ")
 
-    #firstly, make sure a valid statistics ID is being passed
-    if not 1 <= statistics_id <= 5:
-        return bad_response(400, "Invalid Statistics ID supplied " + str(statistics_id) + ".A valid statistics ID is in the range [1, 5]. ")
+    # firstly, make sure a valid statistics name is being passed
+    if not (statistics_name == "distances" or statistics_name == "average_speeds" or statistics_name == "average_heart_rates"
+            or statistics_name == "elevation_gains" or statistics_name == "elapsed_times"):
+        return bad_response(400, "Invalid Statistics name supplied: " + str(statistics_name) + ". A valid statistics name is" \
+                             ": 'distances'|'average_speeds'|'average_heart_rates'|'elevation_gains'|'elapsed_times'. ")
 
     #firstly check if the passed user_id actually exists
     try:
@@ -88,7 +98,8 @@ def get_single_statistics_user_id(user_id, statistics_id):
 
     except requests.exceptions.RequestException:
         return bad_response(503,
-                            "The 'dataservice' microservice on which this application depends on is not available. Please, try again later.")
+                            "The 'dataservice' microservice on which this application depends on is not available."\
+                            "Please, try again later.")
 
 
     #fine, we now have a valid user ID and a valid statistics ID
@@ -98,6 +109,8 @@ def get_single_statistics_user_id(user_id, statistics_id):
     #process every single run for a user
     runs_response = url_request_runs.json()
 
+    run_names_array = []
+    run_ids_array = []
     distance_array = []
     average_speed_array = []
     average_heart_rate_array = []
@@ -107,28 +120,38 @@ def get_single_statistics_user_id(user_id, statistics_id):
     #add the corresponding runs' statistics seeked to a dictionary
     for run_response in runs_response:
         for attr in run_response:
-            if(attr == "distance" and statistics_id == 1):
-                distance_array.append(run_response[attr])
-            elif(attr == "average_speed" and statistics_id == 2):
-                average_speed_array.append(run_response[attr])
-            elif(attr == "average_heartrate" and statistics_id == 3):
-                average_heart_rate_array.append(run_response[attr])
-            elif(attr == "total_elevation_gain" and statistics_id == 4):
-                elevation_gain_array.append(run_response[attr])
-            elif(attr == "elapsed_time" and statistics_id == 5):
-                elapsed_time_array.append(run_response[attr])
+            attr_value = run_response[attr]
+            if(attr == "distance" and statistics_name == "distances"):
+                distance_array.append(attr_value)
+            elif(attr == "average_speed" and statistics_name == "average_speeds"):
+                average_speed_array.append(attr_value)
+            elif(attr == "average_heartrate" and statistics_name == "average_heart_rates"):
+                average_heart_rate_array.append(attr_value)
+            elif(attr == "total_elevation_gain" and statistics_name == "elevation_gains"):
+                elevation_gain_array.append(attr_value)
+            elif(attr == "elapsed_time" and statistics_name == "elapsed_times"):
+                elapsed_time_array.append(attr_value)
+            elif (attr == "title"):
+                run_names_array.append(attr_value)
+            elif (attr == "id"):
+                run_ids_array.append(attr_value)
 
     output_dictionary = {}
 
-    if statistics_id == 1:
-        output_dictionary = {"distance_array" : distance_array}
-    elif statistics_id == 2:
-        output_dictionary = {"average_speed_array" : average_speed_array}
-    elif statistics_id == 3:
-        output_dictionary = {"average_heart_rate_array": average_heart_rate_array}
-    elif statistics_id == 4:
-        output_dictionary = {"elevation_gain_array": elevation_gain_array}
-    elif statistics_id == 5:
-        output_dictionary = {"elapsed_time_array": elapsed_time_array}
+    if statistics_name == "distances":
+        output_dictionary = {"distances" : distance_array}
+    elif statistics_name == "average_speeds":
+        output_dictionary = {"average_speeds" : average_speed_array}
+    elif statistics_name == "average_heart_rates":
+        output_dictionary = {"average_heart_rates": average_heart_rate_array}
+    elif statistics_name == "elevation_gains":
+        output_dictionary = {"elevation_gains": elevation_gain_array}
+    elif statistics_name == "elapsed_times":
+        output_dictionary = {"elapsed_times": elapsed_time_array}
+
+
+    output_dictionary.update({"run_names" : run_names_array})
+
+    output_dictionary.update({"run_ids" : run_ids_array})
 
     return jsonify(output_dictionary)
