@@ -1,7 +1,9 @@
 # BeepBeep-Statistics :runner:
 
-## Statistics API Documentation
-This microservice provide a standard statistics API, the documentation can be found at this [page](https://danyele.github.io/BeepBeep-statistics/#beep-beep-statistics-webservice)
+## API Documentation :trollface:
+
+This microservice provide a standard statistics API, the documentation can be found at this [page](https://MFranceschi6.github.io/BeepBeep-statistics/)
+
 The present API returns vectors of the runs for the user ID provided. 
 
 ## How to run the Statistics webservice :smile:
