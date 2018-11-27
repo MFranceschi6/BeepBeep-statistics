@@ -142,7 +142,7 @@ paths:
       security:
       - api_key: []
       
-  /users/{user_id}/statistics/{statistics_id}/:
+  /users/{user_id}/statistics/{statistics_name}/:
     parameters:
       - in: path
         name: user_id
@@ -151,14 +151,14 @@ paths:
         schema:
           type: integer
       - in: path
-        name: statistics_id
-        description: "Based on the statistics ID passed, an array containing the run names, as well as the array corresponding to the index supplied is returned: 1 = distance array; 2 = average speed array; 3 = average heartrate array ; 4 = total elevation gain array; 5 = elapsed time array."
+        name: statistics_name
+        description: "Based on the statistics name passed, an array containing the run names corresponding to the statistics name supplied is returned. 'distances' = distance array; 'average_speeds' = average speed array; 'average_heart_rates' = average heartrate array ; 'elevation_gains' = total elevation gain array; 'elapsed_times' = elapsed time array."
         required: true
         schema:
-          type: integer
+          type: string
     get:
       operationId: "getSingleStatisticsbyUserID"
-      description: "By accessing this page and providing an existing user ID, you retrieve a set of 5 arrays about the temporal statistics of your runs for the following attributes, respectively: 'distance', 'average speed', 'average heartrate'. 'total elevation gain', 'elapsed time'."
+      description: "By accessing this page and providing an existing user ID, you retrieve a set of 7 arrays about the temporal statistics of your runs for the following attributes, respectively: 'distance', 'average speed', 'average heartrate'. 'total elevation gain', 'elapsed time', as well as the run names and the run ids. "
       responses:
         '200':
           description: "Runs' statistics of one single statistics type for the user whose ID was provided"
