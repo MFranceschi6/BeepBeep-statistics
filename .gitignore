@@ -13,3 +13,7 @@
 requirements.txte
 
 slate/
+
+src
+
+__pycache__
