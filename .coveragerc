@@ -1,0 +1,4 @@
+[run]
+omit =
+	beepbeep/statistics/tests/*
+ 	beepbeep/statistics/run.py
