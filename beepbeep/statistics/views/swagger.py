@@ -50,17 +50,15 @@ def get_all_statistics_user_id(user_id):
             attr_value = run_response[attr]
 
             #if an attribute is found to have an invalid value, it is set to 0 to avoid wrong displays in the webservice JS
-            if(attr_value == None or attr_value == "" or attr_value == "Null"):
+            if(attr_value == None or attr_value == "" or attr_value == "Null" or attr_value == "null"):
                 attr_value = 0
 
             if(attr == "distance" ):
                 distance_array.append(attr_value)
             #if invalid distance:
-            elif(attr=="distance" and (attr_value == "0" or attr_value == None)):
-                distance_array.append(0)
             elif(attr == "average_speed" ):
                 average_speed_array.append(attr_value)
-            elif(attr == "average_heartrate"  and attr_value > 0):
+            elif(attr == "average_heartrate"):
                 average_heart_rate_array.append(attr_value)
             elif(attr == "total_elevation_gain" ):
                 elevation_gain_array.append(attr_value)
@@ -129,7 +127,7 @@ def get_single_statistics_user_id(user_id, statistics_name):
         for attr in run_response:
             attr_value = run_response[attr]
 
-            if (attr_value == None or attr_value == "" or attr_value == "Null"):
+            if (attr_value == None or attr_value == "" or attr_value == "Null" or attr_value == "null"):
                 attr_value = 0
 
             if(attr == "distance" and statistics_name == "distances" ):
