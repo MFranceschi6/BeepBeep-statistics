@@ -12,7 +12,7 @@ YML = os.path.join(HERE, '..', 'static', 'api.yaml')
 api = SwaggerBlueprint('API', __name__, swagger_spec=YML)
 
 
-DATA_SERVICE = 'http://'+os.environ['DATA_SERVICE']+':5002' if 'DATA_SERVICE' in os.environ else "http://127.0.0.1:5002"
+DATASERVICE_PATH = 'http://'+os.environ['DATA_SERVICE']+':5002' if 'DATA_SERVICE' in os.environ else "http://127.0.0.1:5002"
 
 
 @api.operation('getAllStatisticsbyUserID')
