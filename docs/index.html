@@ -310,10 +310,10 @@
 <p>Code samples</p>
 </blockquote>
 <pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
-curl -X GET 0.0.0.0:5001/users/<span class="o">{</span>user_id<span class="o">}</span>/statistics/ <span class="se">\</span>
+curl -X GET 0.0.0.0:5001/users/<span class="o">{</span>user_id<span class="o">}</span>/statistics <span class="se">\</span>
   -H <span class="s1">'Accept: application/json'</span>
 
-</code></pre><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">0.0.0.0:5001/users/{user_id}/statistics/</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">0.0.0.0:5001/users/{user_id}/statistics</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">5001</span>
 <span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
 
@@ -323,7 +323,7 @@ curl -X GET 0.0.0.0:5001/users/<span class="o">{</span>user_id<span class="o">}<
 <span class="p">};</span>
 
 <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
-  <span class="na">url</span><span class="p">:</span> <span class="s1">'0.0.0.0:5001/users/{user_id}/statistics/'</span><span class="p">,</span>
+  <span class="na">url</span><span class="p">:</span> <span class="s1">'0.0.0.0:5001/users/{user_id}/statistics'</span><span class="p">,</span>
   <span class="na">method</span><span class="p">:</span> <span class="s1">'get'</span><span class="p">,</span>
 
   <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span><span class="p">,</span>
@@ -339,7 +339,7 @@ curl -X GET 0.0.0.0:5001/users/<span class="o">{</span>user_id<span class="o">}<
 
 <span class="p">};</span>
 
-<span class="nx">fetch</span><span class="p">(</span><span class="s1">'0.0.0.0:5001/users/{user_id}/statistics/'</span><span class="p">,</span>
+<span class="nx">fetch</span><span class="p">(</span><span class="s1">'0.0.0.0:5001/users/{user_id}/statistics'</span><span class="p">,</span>
 <span class="p">{</span>
   <span class="na">method</span><span class="p">:</span> <span class="s1">'GET'</span><span class="p">,</span>
 
@@ -358,7 +358,7 @@ curl -X GET 0.0.0.0:5001/users/<span class="o">{</span>user_id<span class="o">}<
   <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span>
 <span class="p">}</span>
 
-<span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'0.0.0.0:5001/users/{user_id}/statistics/'</span><span class="p">,</span>
+<span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'0.0.0.0:5001/users/{user_id}/statistics'</span><span class="p">,</span>
   <span class="ss">params: </span><span class="p">{</span>
   <span class="p">},</span> <span class="ss">headers: </span><span class="n">headers</span>
 
@@ -369,13 +369,13 @@ curl -X GET 0.0.0.0:5001/users/<span class="o">{</span>user_id<span class="o">}<
   <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span>
 <span class="p">}</span>
 
-<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'0.0.0.0:5001/users/{user_id}/statistics/'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'0.0.0.0:5001/users/{user_id}/statistics'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
 
 <span class="p">},</span> <span class="n">headers</span> <span class="o">=</span> <span class="n">headers</span><span class="p">)</span>
 
 <span class="k">print</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 
-</code></pre><pre class="highlight java tab-java"><code><span class="n">URL</span> <span class="n">obj</span> <span class="o">=</span> <span class="k">new</span> <span class="n">URL</span><span class="o">(</span><span class="s">"0.0.0.0:5001/users/{user_id}/statistics/"</span><span class="o">);</span>
+</code></pre><pre class="highlight java tab-java"><code><span class="n">URL</span> <span class="n">obj</span> <span class="o">=</span> <span class="k">new</span> <span class="n">URL</span><span class="o">(</span><span class="s">"0.0.0.0:5001/users/{user_id}/statistics"</span><span class="o">);</span>
 <span class="n">HttpURLConnection</span> <span class="n">con</span> <span class="o">=</span> <span class="o">(</span><span class="n">HttpURLConnection</span><span class="o">)</span> <span class="n">obj</span><span class="o">.</span><span class="na">openConnection</span><span class="o">();</span>
 <span class="n">con</span><span class="o">.</span><span class="na">setRequestMethod</span><span class="o">(</span><span class="s">"GET"</span><span class="o">);</span>
 <span class="kt">int</span> <span class="n">responseCode</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="na">getResponseCode</span><span class="o">();</span>
@@ -404,7 +404,7 @@ curl -X GET 0.0.0.0:5001/users/<span class="o">{</span>user_id<span class="o">}<
     </span><span class="p">}</span><span class="x">
 
     </span><span class="n">data</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">bytes</span><span class="o">.</span><span class="n">NewBuffer</span><span class="p">([]</span><span class="kt">byte</span><span class="p">{</span><span class="n">jsonReq</span><span class="p">})</span><span class="x">
-    </span><span class="n">req</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">http</span><span class="o">.</span><span class="n">NewRequest</span><span class="p">(</span><span class="s">"GET"</span><span class="p">,</span><span class="x"> </span><span class="s">"0.0.0.0:5001/users/{user_id}/statistics/"</span><span class="p">,</span><span class="x"> </span><span class="n">data</span><span class="p">)</span><span class="x">
+    </span><span class="n">req</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">http</span><span class="o">.</span><span class="n">NewRequest</span><span class="p">(</span><span class="s">"GET"</span><span class="p">,</span><span class="x"> </span><span class="s">"0.0.0.0:5001/users/{user_id}/statistics"</span><span class="p">,</span><span class="x"> </span><span class="n">data</span><span class="p">)</span><span class="x">
     </span><span class="n">req</span><span class="o">.</span><span class="n">Header</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="n">headers</span><span class="x">
 
     </span><span class="n">client</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="o">&amp;</span><span class="n">http</span><span class="o">.</span><span class="n">Client</span><span class="p">{}</span><span class="x">
@@ -413,7 +413,7 @@ curl -X GET 0.0.0.0:5001/users/<span class="o">{</span>user_id<span class="o">}<
 </span><span class="p">}</span><span class="x">
 
 </span></code></pre>
-<p><code>GET /users/{user_id}/statistics/</code></p>
+<p><code>GET /users/{user_id}/statistics</code></p>
 
 <p>By accessing this page and providing an existing user ID, you retrieve a set of 6 arrays about the temporal statistics of your runs for the following attributes, respectively: &#39;distance&#39;, &#39;average speed&#39;, &#39;average heartrate&#39;. &#39;total elevation gain&#39;, &#39;elapsed time&#39; and &#39;run names&#39;</p>
 
@@ -513,10 +513,10 @@ None
 <p>Code samples</p>
 </blockquote>
 <pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
-curl -X GET 0.0.0.0:5001/users/<span class="o">{</span>user_id<span class="o">}</span>/statistics/<span class="o">{</span>statistics_name<span class="o">}</span>/ <span class="se">\</span>
+curl -X GET 0.0.0.0:5001/users/<span class="o">{</span>user_id<span class="o">}</span>/statistics/<span class="o">{</span>statistics_name<span class="o">}</span> <span class="se">\</span>
   -H <span class="s1">'Accept: application/json'</span>
 
-</code></pre><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">0.0.0.0:5001/users/{user_id}/statistics/{statistics_name}/</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">0.0.0.0:5001/users/{user_id}/statistics/{statistics_name}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">5001</span>
 <span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
 
@@ -526,7 +526,7 @@ curl -X GET 0.0.0.0:5001/users/<span class="o">{</span>user_id<span class="o">}<
 <span class="p">};</span>
 
 <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
-  <span class="na">url</span><span class="p">:</span> <span class="s1">'0.0.0.0:5001/users/{user_id}/statistics/{statistics_name}/'</span><span class="p">,</span>
+  <span class="na">url</span><span class="p">:</span> <span class="s1">'0.0.0.0:5001/users/{user_id}/statistics/{statistics_name}'</span><span class="p">,</span>
   <span class="na">method</span><span class="p">:</span> <span class="s1">'get'</span><span class="p">,</span>
 
   <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span><span class="p">,</span>
@@ -542,7 +542,7 @@ curl -X GET 0.0.0.0:5001/users/<span class="o">{</span>user_id<span class="o">}<
 
 <span class="p">};</span>
 
-<span class="nx">fetch</span><span class="p">(</span><span class="s1">'0.0.0.0:5001/users/{user_id}/statistics/{statistics_name}/'</span><span class="p">,</span>
+<span class="nx">fetch</span><span class="p">(</span><span class="s1">'0.0.0.0:5001/users/{user_id}/statistics/{statistics_name}'</span><span class="p">,</span>
 <span class="p">{</span>
   <span class="na">method</span><span class="p">:</span> <span class="s1">'GET'</span><span class="p">,</span>
 
@@ -561,7 +561,7 @@ curl -X GET 0.0.0.0:5001/users/<span class="o">{</span>user_id<span class="o">}<
   <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span>
 <span class="p">}</span>
 
-<span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'0.0.0.0:5001/users/{user_id}/statistics/{statistics_name}/'</span><span class="p">,</span>
+<span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'0.0.0.0:5001/users/{user_id}/statistics/{statistics_name}'</span><span class="p">,</span>
   <span class="ss">params: </span><span class="p">{</span>
   <span class="p">},</span> <span class="ss">headers: </span><span class="n">headers</span>
 
@@ -572,13 +572,13 @@ curl -X GET 0.0.0.0:5001/users/<span class="o">{</span>user_id<span class="o">}<
   <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span>
 <span class="p">}</span>
 
-<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'0.0.0.0:5001/users/{user_id}/statistics/{statistics_name}/'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'0.0.0.0:5001/users/{user_id}/statistics/{statistics_name}'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
 
 <span class="p">},</span> <span class="n">headers</span> <span class="o">=</span> <span class="n">headers</span><span class="p">)</span>
 
 <span class="k">print</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 
-</code></pre><pre class="highlight java tab-java"><code><span class="n">URL</span> <span class="n">obj</span> <span class="o">=</span> <span class="k">new</span> <span class="n">URL</span><span class="o">(</span><span class="s">"0.0.0.0:5001/users/{user_id}/statistics/{statistics_name}/"</span><span class="o">);</span>
+</code></pre><pre class="highlight java tab-java"><code><span class="n">URL</span> <span class="n">obj</span> <span class="o">=</span> <span class="k">new</span> <span class="n">URL</span><span class="o">(</span><span class="s">"0.0.0.0:5001/users/{user_id}/statistics/{statistics_name}"</span><span class="o">);</span>
 <span class="n">HttpURLConnection</span> <span class="n">con</span> <span class="o">=</span> <span class="o">(</span><span class="n">HttpURLConnection</span><span class="o">)</span> <span class="n">obj</span><span class="o">.</span><span class="na">openConnection</span><span class="o">();</span>
 <span class="n">con</span><span class="o">.</span><span class="na">setRequestMethod</span><span class="o">(</span><span class="s">"GET"</span><span class="o">);</span>
 <span class="kt">int</span> <span class="n">responseCode</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="na">getResponseCode</span><span class="o">();</span>
@@ -607,7 +607,7 @@ curl -X GET 0.0.0.0:5001/users/<span class="o">{</span>user_id<span class="o">}<
     </span><span class="p">}</span><span class="x">
 
     </span><span class="n">data</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">bytes</span><span class="o">.</span><span class="n">NewBuffer</span><span class="p">([]</span><span class="kt">byte</span><span class="p">{</span><span class="n">jsonReq</span><span class="p">})</span><span class="x">
-    </span><span class="n">req</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">http</span><span class="o">.</span><span class="n">NewRequest</span><span class="p">(</span><span class="s">"GET"</span><span class="p">,</span><span class="x"> </span><span class="s">"0.0.0.0:5001/users/{user_id}/statistics/{statistics_name}/"</span><span class="p">,</span><span class="x"> </span><span class="n">data</span><span class="p">)</span><span class="x">
+    </span><span class="n">req</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">http</span><span class="o">.</span><span class="n">NewRequest</span><span class="p">(</span><span class="s">"GET"</span><span class="p">,</span><span class="x"> </span><span class="s">"0.0.0.0:5001/users/{user_id}/statistics/{statistics_name}"</span><span class="p">,</span><span class="x"> </span><span class="n">data</span><span class="p">)</span><span class="x">
     </span><span class="n">req</span><span class="o">.</span><span class="n">Header</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="n">headers</span><span class="x">
 
     </span><span class="n">client</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="o">&amp;</span><span class="n">http</span><span class="o">.</span><span class="n">Client</span><span class="p">{}</span><span class="x">
@@ -616,7 +616,7 @@ curl -X GET 0.0.0.0:5001/users/<span class="o">{</span>user_id<span class="o">}<
 </span><span class="p">}</span><span class="x">
 
 </span></code></pre>
-<p><code>GET /users/{user_id}/statistics/{statistics_name}/</code></p>
+<p><code>GET /users/{user_id}/statistics/{statistics_name}</code></p>
 
 <p>By accessing this page and providing an existing user ID, you retrieve a set of 7 arrays about the temporal statistics of your runs for the following attributes, respectively: &#39;distance&#39;, &#39;average speed&#39;, &#39;average heartrate&#39;. &#39;total elevation gain&#39;, &#39;elapsed time&#39;, as well as the run names and the run ids. </p>
 
