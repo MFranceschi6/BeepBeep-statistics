@@ -1,4 +1,4 @@
-# BeepBeep-Statistics :runner:
+# BeepBeep-Statistics :runner: [![Build Status](https://travis-ci.org/MFranceschi6/BeepBeep-statistics.svg?branch=master)](https://travis-ci.org/MFranceschi6/BeepBeep-statistics) [![Coverage Status](https://coveralls.io/repos/github/MFranceschi6/BeepBeep-statistics/badge.svg?branch=master)](https://coveralls.io/github/MFranceschi6/BeepBeep-statistics?branch=master)
 
 ## API Documentation :trollface:
 

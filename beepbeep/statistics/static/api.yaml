@@ -115,7 +115,7 @@ components:
             $ref: '#/components/schemas/RunIDsArray'
       
 paths:
-  /users/{user_id}/statistics/:
+  /users/{user_id}/statistics:
     parameters:
       - in: path
         name: user_id
@@ -142,7 +142,7 @@ paths:
       security:
       - api_key: []
       
-  /users/{user_id}/statistics/{statistics_name}/:
+  /users/{user_id}/statistics/{statistics_name}:
     parameters:
       - in: path
         name: user_id

@@ -13,3 +13,9 @@
 requirements.txte
 
 slate/
+
+src
+
+__pycache__
+
+.coverage

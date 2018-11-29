@@ -28,6 +28,7 @@ def test_getAllStatisticsbyUserID_status_code_200(client):
         mocked.get.return_value.status_code = 200
         response = client.get('/users/1/statistics')
 
+
         print(response.status_code)
         assert response.status_code == 200
 
