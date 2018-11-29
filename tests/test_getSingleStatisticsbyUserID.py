@@ -7,7 +7,7 @@ from .fake_run_factory import FakeRunFactory
 def test_getSingleStatisticsbyUserID_status_code_404(client):
     with mock.patch('beepbeep.statistics.views.swagger.requests') as mocked:
         mocked.get.return_value.status_code = 404
-        response = client.get('/users/1/statistics/distances/')
+        response = client.get('/users/1/statistics/distances')
 
         print(response.status_code)
         assert response.status_code == 404
@@ -15,7 +15,7 @@ def test_getSingleStatisticsbyUserID_status_code_404(client):
 
 def test_getSingleStatisticsbyUserID_status_code_503(client):
     with mock.patch('beepbeep.statistics.views.swagger.requests.get', side_effect=RequestException):
-        response = client.get('/users/1/statistics/distances/')
+        response = client.get('/users/1/statistics/distances')
 
         print(response.status_code)
         assert response.status_code == 503
@@ -28,10 +28,10 @@ def test_getSingleStatisticsbyUserID_status_code_400(client):
 
         responses = []
 
-        responses.append(client.get('/users/1/statistics/random_string/'))
-        responses.append(client.get('/users/1/statistics/_distances_/'))
-        responses.append(client.get('/users/1/statistics/distances_/'))
-        responses.append(client.get('/users/1/statistics/_distances/'))
+        responses.append(client.get('/users/1/statistics/random_string'))
+        responses.append(client.get('/users/1/statistics/_distances_'))
+        responses.append(client.get('/users/1/statistics/distances_'))
+        responses.append(client.get('/users/1/statistics/_distances'))
 
         for response in responses:
             assert response.status_code == 400
@@ -40,11 +40,11 @@ def test_getSingleStatisticsbyUserID_status_code_400(client):
 def send_requests(client):
     responses = dict()
 
-    responses['distances'] = client.get('/users/1/statistics/distances/')
-    responses['average_speeds'] = client.get('/users/1/statistics/average_speeds/')
-    responses['average_heart_rates'] = client.get('/users/1/statistics/average_heart_rates/')
-    responses['elevation_gains'] = client.get('/users/1/statistics/elevation_gains/')
-    responses['elapsed_times'] = client.get('/users/1/statistics/elapsed_times/')
+    responses['distances'] = client.get('/users/1/statistics/distances')
+    responses['average_speeds'] = client.get('/users/1/statistics/average_speeds')
+    responses['average_heart_rates'] = client.get('/users/1/statistics/average_heart_rates')
+    responses['elevation_gains'] = client.get('/users/1/statistics/elevation_gains')
+    responses['elapsed_times'] = client.get('/users/1/statistics/elapsed_times')
 
     for _, response in responses.items():
         assert response.status_code == 200
